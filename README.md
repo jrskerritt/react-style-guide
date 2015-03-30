@@ -1,3 +1,4 @@
+
 # PayScale React Coding Standards
 
 #### Sources
@@ -93,7 +94,7 @@ FooComponent.propTypes = propTypes;
         data-bar="some value">
     ```
 
-* Open elements that span multiple lines on the same line. This conserves space because it requires one fewer tab and also saves a couple of lines. The exception would be if your parent element causes the first line to exceed 80 characters. In this case it is fine to use parentheses and align props/attributes.
+* Open elements that span multiple lines on the same line. This conserves space because it requires one fewer tab and also saves a couple of lines. The exception would be if your parent element is long and doesn't fit on a single line. In this case it is fine to use parentheses and align props/attributes.
 
     ```js
     // Bad
@@ -126,7 +127,7 @@ FooComponent.propTypes = propTypes;
     );
     ```
 
-* Variables holding a JSX object can stay on one line if it fits within the 80 characters.
+* Variables holding a JSX object can stay on one line if it is short enough.
     
     ```js
     var singleLineJsx = <h1>My header</h1>;
