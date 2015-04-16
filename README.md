@@ -45,7 +45,7 @@ Based on the styles recommended from:
     ```
 
     ```js
-    <Component onButtonClick={this._handleButtonClick.bind(this) />
+    <Component onButtonClick={this._handleButtonClick.bind(this)} />
     ```
 
 # ES6
