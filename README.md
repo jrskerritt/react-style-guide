@@ -38,10 +38,14 @@ Based on the styles recommended from:
 
 * Prefix custom methods and event handlers with an underscore. 
 
-* Event handlers should be named `_handle{EventName}`.
+* Event handlers should be named `_handle{EventName}`. Props that pass event handlers should be named `on{EventName}`.
 
     ```js
     _handleButtonClick : function () {}
+    ```
+
+    ```js
+    <Component onButtonClick={this._handleButtonClick.bind(this) />
     ```
 
 # ES6
