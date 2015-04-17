@@ -32,7 +32,7 @@ Based on the styles recommended from:
     });
     ```
 
-* Always define the component's props in a `propTypes` object. This makes it easy to quickly see all of the props that are used in the component, gives the reader an idea of what the component does, and adds validation to incoming props on a new instance.
+* Always define the component's props in a `propTypes` object. This makes it easy to quickly see all of the props that are used in the component, gives the reader an idea of what the component does, and adds validation to incoming props on a new instance. Comment these props generously and alphabetize them if there are many.
 
 * The `render` method should always be last - this way you can easily find it by scrolling to the bottom of the file.
 
