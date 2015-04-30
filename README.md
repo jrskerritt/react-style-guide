@@ -7,6 +7,7 @@ Based on the styles recommended from:
 
 1. https://github.com/Khan/style-guides/blob/master/style/react.md
 2. https://reactjsnews.com/react-style-guide-patterns-i-like/
+3. React.js Training by Ryan Florence and Michael Jackson
 
 
 # Classes
