@@ -12,6 +12,16 @@ Based on the styles recommended from:
 
 # Classes
 
+* Component class names should always begin with an upper case character. React expects elements starting with a lower case character to be built-in HTML elements and will throw an error if your component starts with one.
+
+    ```js
+    // Bad
+    var myComponent = React.createClass({ /* ... */ });
+
+    // Good
+    var MyComponent = React.createClass({ /* ... */ });
+    ```
+
 * Methods should generally be ordered by the following:
 
     1. `displayName`
