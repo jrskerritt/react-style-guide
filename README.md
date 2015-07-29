@@ -116,38 +116,29 @@ FooComponent.propTypes = propTypes;
     </div>
     ```
 
-* Open elements that span multiple lines on the same line. This conserves space because it requires one fewer tab and also saves a couple of lines. The exception would be if your parent element is long and doesn't fit on a single line. In this case it is fine to use parentheses and align props/attributes.
+* Open elements that span multiple lines on the same line. This conserves space because it requires one fewer tab and also saves a couple of lines.
 
     ```js
-    // Bad
+    // OK...
     var multilineJsx = (
         <div>
             { /* ... */ }
         </div>
     );
 
-    // Good
+    // Better
     var multilineJsx = <div>
         { /* ... */ }
     </div>;
 
-    // OK
-    var multilineJsx = (
-        <div className="really very long class">
-            { /* ... */ }
-        </div>
-    );
-
-    // OK
-    var multilineJsx = (
-        <div
-            className="really very long class"
-            id="reallyReallyReallyLongId"
-            data-foo="some important value"
-        >
-            { /* ... */ }
-        </div>
-    );
+    // Better
+    var multilineJsx = <div
+        className="really very long class"
+        id="reallyReallyReallyLongId"
+        data-foo="some important value"
+    >
+        { /* ... */ }
+    </div>;
     ```
 
 * Variables holding a JSX object can stay on one line if it is short enough.
