@@ -32,14 +32,14 @@ Based on the styles recommended from:
 
     ```js
     React.createClass({
-        displayName : '',
+        displayName: '',
         propTypes: {},
-        getInitialState : function () {},
-        componentWillMount : function () {},
-        componentWillUnmount : function () {},
-        _handleButtonClick : function () {},
+        getInitialState: function () {},
+        componentWillMount: function () {},
+        componentWillUnmount: function () {},
+        _handleButtonClick: function () {},
         _myCustomMethod: function () {},
-        render : function () {}
+        render: function () {}
     });
     ```
 
@@ -52,7 +52,7 @@ Based on the styles recommended from:
 * Event handlers should be named `_handle{EventName}`. Props that pass event handlers should be named `on{EventName}`.
 
     ```js
-    _handleButtonClick : function () {}
+    _handleButtonClick: function () {}
     ```
 
     ```js
