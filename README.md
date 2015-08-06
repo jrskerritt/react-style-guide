@@ -22,26 +22,30 @@ Based on the styles recommended from:
     var MyComponent = React.createClass({ /* ... */ });
     ```
 
-* Methods should generally be ordered by the following:
+* Members should be in the following order:
 
     1. `displayName`
     2. `propTypes`
-    3. Lifecycle methods in order of first to last
-    4. Custom methods
-    5. `render`
+    3. `getDefaultProps`
+    4. `getInitialState`
+    5. Lifecycle methods in order of occurrence
+    6. Implementation methods
+    7. `render`
 
     ```js
     React.createClass({
         displayName: '',
         propTypes: {},
+        getDefaultProps: function () {},
         getInitialState: function () {},
         componentWillMount: function () {},
         componentWillUnmount: function () {},
         _handleButtonClick: function () {},
-        _myCustomMethod: function () {},
+        _myMethod: function () {},
         render: function () {}
     });
     ```
+* `displayName` and `render` should always be defined. Include other members as they become necessary for your component.
 
 * Always define the component's props in a `propTypes` object. This makes it easy to quickly see all of the props that are used in the component, gives the reader an idea of what the component does, and adds validation to incoming props on a new instance. Comment these props generously and alphabetize them if there are many.
 
@@ -66,6 +70,7 @@ Defining a component class in ES6 is done like this:
 ```js
 const displayName = '';
 const propTypes = {};
+const defaultProps = {};
 
 class FooComponent extends React.Component {
     constructor() {
@@ -82,9 +87,10 @@ class FooComponent extends React.Component {
 
 FooComponent.displayName = displayName;
 FooComponent.propTypes = propTypes;
+FooComponent.defaultProps = defaultProps;
 ```
 
-* Defining `displayName` and `propTypes` as constants at the top achieves the same result as in the ES5 example from above - key information about the component is easily discoverable at the top of the file.
+* Defining `displayName`, `propTypes`, and `defaultProps` as constants at the top achieves the same result as in the ES5 example from above - key information about the component is easily discoverable at the top of the file.
 
 * A constructor that calls `super(props)` is required.
 
