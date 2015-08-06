@@ -36,6 +36,7 @@ Based on the styles recommended from:
     React.createClass({
         displayName: '',
         propTypes: {},
+        getDefaultProps: function () {},
         getInitialState: function () {},
         componentWillMount: function () {},
         componentWillUnmount: function () {},
@@ -44,6 +45,7 @@ Based on the styles recommended from:
         render: function () {}
     });
     ```
+* `displayName` and `render` should always be defined. Include other members as they become necessary for your component.
 
 * Always define the component's props in a `propTypes` object. This makes it easy to quickly see all of the props that are used in the component, gives the reader an idea of what the component does, and adds validation to incoming props on a new instance. Comment these props generously and alphabetize them if there are many.
 
