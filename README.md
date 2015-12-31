@@ -1,5 +1,5 @@
 
-# PayScale React Coding Standards
+# PayScale React Style Guide
 
 #### Sources
 
