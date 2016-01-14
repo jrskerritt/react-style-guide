@@ -63,6 +63,32 @@ Based on the styles recommended from:
     <Component onButtonClick={this._handleButtonClick.bind(this)} />
     ```
 
+# Stateless Functions
+
+[Stateless functions](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions) should be preferred for simple components that do not have any state (pure functions of their props). From the link:
+
+> In an ideal world, most of your components would be stateless functions because these stateless components can follow a faster code path within the React core. This is the recommended pattern, when possible.
+
+```js
+import React from 'react';
+
+const displayName = 'MyFoo';
+const propTypes = { message: React.PropTypes.string };
+
+const MyFoo = (props) => {
+    return <div>Foo {props.message}</div>;
+};
+
+MyFoo.displayName = displayName;
+MyFoo.propTypes = propTypes;
+module.exports = MyFoo;
+```
+
+```js
+ReactDOM.render(<MyFoo message="Bar" />, mountNode);
+```
+
+
 # ES6
 
 Defining a component class in ES6 is done like this:
@@ -73,11 +99,6 @@ const propTypes = {};
 const defaultProps = {};
 
 class FooComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
     componentWillMount() {}
     componentWillUnmount() {}
     _handleButtonClick() {}
@@ -92,9 +113,22 @@ FooComponent.defaultProps = defaultProps;
 
 * Defining `displayName`, `propTypes`, and `defaultProps` as constants at the top achieves the same result as in the ES5 example from above - key information about the component is easily discoverable at the top of the file.
 
-* A constructor that calls `super(props)` is required.
+* `getInitialState` should not be defined on your class; set `this.state` in a constructor instead.
 
-* `getInitialState` should not be defined on your class - set `this.state` in your constructor instead.
+    ```js
+    class FooComponent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                loading: true
+            };
+        }
+
+        render() {
+            // ...
+        }
+    }
+    ```
 
 
 # JSX
