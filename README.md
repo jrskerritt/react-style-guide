@@ -24,17 +24,15 @@ Based on the styles recommended from:
 
 * Members should be in the following order:
 
-    1. `displayName`
-    2. `propTypes`
-    3. `getDefaultProps`
-    4. `getInitialState`
-    5. Lifecycle methods in order of occurrence
-    6. Implementation methods
-    7. `render`
+    1. `propTypes`
+    2. `getDefaultProps`
+    3. `getInitialState`
+    4. Lifecycle methods in order of occurrence
+    5. Implementation methods
+    6. `render`
 
     ```js
-    React.createClass({
-        displayName: '',
+    const Foo = React.createClass({
         propTypes: {},
         getDefaultProps: function () {},
         getInitialState: function () {},
@@ -45,7 +43,7 @@ Based on the styles recommended from:
         render: function () {}
     });
     ```
-* `displayName` and `render` should always be defined. Include other members as they become necessary for your component.
+* `render` should always be defined. Include other members as they become necessary for your component.
 
 * Always define the component's props in a `propTypes` object. This makes it easy to quickly see all of the props that are used in the component, gives the reader an idea of what the component does, and adds validation to incoming props on a new instance. Comment these props generously and alphabetize them if there are many.
 
@@ -56,11 +54,11 @@ Based on the styles recommended from:
 * Event handlers should be named `_handle{EventName}`. Props that pass event handlers should be named `on{EventName}`.
 
     ```js
-    _handleButtonClick: function () {}
+    _handleButtonClick: function (e) { /* ... */ }
     ```
 
     ```js
-    <Component onButtonClick={this._handleButtonClick.bind(this)} />
+    <Foo onButtonClick={this._handleButtonClick} />
     ```
 
 # Stateless Functions
@@ -72,20 +70,31 @@ Based on the styles recommended from:
 ```js
 import React from 'react';
 
-const displayName = 'MyFoo';
 const propTypes = { message: React.PropTypes.string };
 
-const MyFoo = (props) => {
+export default function Foo(props) {
     return <div>Foo {props.message}</div>;
-};
+}
 
-MyFoo.displayName = displayName;
-MyFoo.propTypes = propTypes;
-module.exports = MyFoo;
+Foo.propTypes = propTypes;
 ```
 
 ```js
-ReactDOM.render(<MyFoo message="Bar" />, mountNode);
+ReactDOM.render(<Foo message="Bar" />, mountNode);
+```
+
+You can also use ES6 object destructuring in the function args definition to avoid referencing `props` everywhere:
+
+```js
+import React from 'react';
+
+const propTypes = { message: React.PropTypes.string };
+
+export default function Foo({ message }) {
+    return <div>Foo {message}</div>;
+}
+
+Foo.propTypes = propTypes;
 ```
 
 
@@ -94,11 +103,12 @@ ReactDOM.render(<MyFoo message="Bar" />, mountNode);
 Defining a component class in ES6 is done like this:
 
 ```js
-const displayName = '';
-const propTypes = {};
-const defaultProps = {};
+import React, { Component } from 'react';
 
-class FooComponent extends React.Component {
+const propTypes = { /* ... */ };
+const defaultProps = { /* ... */ };
+
+export default class FooComponent extends Component {
     componentWillMount() {}
     componentWillUnmount() {}
     _handleButtonClick() {}
@@ -106,17 +116,31 @@ class FooComponent extends React.Component {
     render() {}
 }
 
-FooComponent.displayName = displayName;
 FooComponent.propTypes = propTypes;
 FooComponent.defaultProps = defaultProps;
 ```
 
-* Defining `displayName`, `propTypes`, and `defaultProps` as constants at the top achieves the same result as in the ES5 example from above - key information about the component is easily discoverable at the top of the file.
+* Defining `propTypes` and `defaultProps` as constants at the top achieves the same result as in the ES5 example from above - key information about the component is easily discoverable at the top of the file.
+
+* If you have a lot of `propTypes`, you can add the `PropTypes` object to the import statement for React to shorten your definition:
+
+    ```js
+    import React, { Component, PropTypes } from 'react';
+
+    const propTypes = {
+        foo: PropTypes.string,
+        bar: PropTypes.number,
+        foobar: PropTypes.object,
+        // etc
+    };
+    ```
 
 * `getInitialState` should not be defined on your class; set `this.state` in a constructor instead.
 
     ```js
-    class FooComponent extends React.Component {
+    import React, { Component } from 'react';
+
+    export default class FooComponent extends Component {
         constructor(props) {
             super(props);
             this.state = {
@@ -124,9 +148,7 @@ FooComponent.defaultProps = defaultProps;
             };
         }
 
-        render() {
-            // ...
-        }
+        render() { /* ... */ }
     }
     ```
 
