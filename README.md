@@ -61,6 +61,31 @@ Based on the styles recommended from:
     <Foo onButtonClick={this._handleButtonClick} />
     ```
 
+* The element returned by the `render` method should have a `className` matching the name of the component (or otherwise identifying the component). This is useful for "namespacing" any CSS/LESS that go with the component. For example:
+
+    ```js
+    // Foobar.js
+    import React from 'react';
+    import 'Foobar.less';
+
+    const Foobar = React.createClass({
+        render: function () {
+            return <div className="foobar">
+                Foobar
+            </div>;
+        }
+    });
+
+    export default Foobar;
+    ```
+
+    ```less
+    // Foobar.less
+    .foobar {
+        // Rules defined here will only apply to Foobar elements
+    }
+    ```
+
 # Stateless Functions
 
 [Stateless functions](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions) should be preferred for simple components that do not have any state (pure functions of their props). From the link:
